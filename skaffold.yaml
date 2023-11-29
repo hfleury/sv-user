@@ -1,0 +1,16 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: msv-user
+build:
+  artifacts:
+    # The user microservice docker image using Golang
+    - image: msv-user-image
+      context: .
+      docker:
+        dockerfile: deployment/dockerfiles/Dockerfile-go
+    # The PostgreSQL docker image with basic configs
+    - image: user-db-image
+      context: .
+      docker:
+        dockerfile: deployment/dockerfiles/Dockerfile-psql
